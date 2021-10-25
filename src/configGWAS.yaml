@@ -1,0 +1,13 @@
+sim: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/sim.vcf   #vcf/pickle
+phen: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/phen.phen    #phen/pickle
+par: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/par.txt
+outDir: res/3000_f10k/3000_f10k
+phenRep: 10
+method: gwas    #'ml/gwas'
+gwasModel: pyseer #pyseer/gemma
+alpha: 1    #1(lasso)/0.0069(enet)
+mlModel: lgbm       #lgbm/svc/lr/rf/xgb
+
+#tools
+python: ~/.local/easybuild/software/2017/Core/miniconda3/4.3.27/envs/MLBenchmarker/bin/python
+cores: 32

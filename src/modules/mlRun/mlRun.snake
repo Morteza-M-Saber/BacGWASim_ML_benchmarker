@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+"""
+?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
+Run genotype-phenotype mappers on simulations
+
+"""
+
+# Used for system calls.
+from subprocess import call
+
+# Used for timestamping the log files.
+from time import localtime, strftime
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+# SNAKEMAKE RULE #
+import os
+
+
+rule mlRun:
+    input: 
+        sim=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["outDir"]),
+        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["outDir"]),
+    output: 
+        expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"]),
+        expand("{outDir}/{{phenIndex}}/mlOutCV.csv",outDir=config["outDir"]),
+    params:
+        mlRun=os.path.join('modules','mlRun','mlRun.py'),
+        logNAME="Run ML/GWAS tools on simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
+        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log'),
+    threads: 16
+    run:
+        with open (input.sim[0],'r') as file:
+            adr_vcf=file.readline().strip()
+        with open (input.phen[0],'r') as file:
+            adr_phen=file.readline().strip()
+        callString='%s %s --mlModel %s --infile %s --phen %s --out %s' %(config['python'],params.mlRun,config['mlModel'],adr_vcf,adr_phen,output[0])  
+        #callString='%s %s --matrix %s --phen %s --out %s' %(config['python2_dir'],config['kover_run'],adr_vcf,adr_phen,output[0])  #KOVER
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        call(callString, shell=True)
