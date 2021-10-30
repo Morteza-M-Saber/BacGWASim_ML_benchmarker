@@ -1,0 +1,51 @@
+# gwasRun.snake (change gwas type in line 40)
+# to use two status of pyseer (enet/lasso) change the default alpha value in pyseerRun.py
+"""
+Created on Fri June 11
+
+@author: Masih
+?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???.
+
+input:
+        simulations.txt, one simulation file per line in .vcf format
+        phen.txt, phenotype of samples in gcta format
+
+"""
+
+# Used for system calls.
+from subprocess import call
+
+# Used for timestamping the log files.
+from time import localtime, strftime
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+# SNAKEMAKE RULE #
+import os
+
+
+rule GWAS:
+    input: 
+        vcf=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["outDir"]),
+        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["outDir"]),
+    output: 
+        expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"])
+    params:
+        logNAME="Run GWAS command." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
+        pyseerRun=os.path.join('modules','mlRun','pyseerRun.py'),
+        gemmaRun=os.path.join('modules','mlRun','gemmaRun.py'),
+        gwasModel=config['gwasModel'],
+        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log'),
+    run:
+        with open (input.vcf[0],'r') as file:
+            adr_vcf=file.readline().strip()
+        with open (input.phen[0],'r') as file:
+            adr_phen=file.readline().strip()
+        if params.gwasModel == 'pyseer':
+            callString='%s %s --alpha %s --vcf %s --phen %s --out %s' %(config['python'],params.pyseerRun,config['alpha'],adr_vcf,adr_phen,output[0])  #GEMMA/pyseer
+        elif params.gwasModel == 'gemma':
+            callString='%s %s --vcf %s --phen %s --out %s' %(config['python'],params.gemmaRun,adr_vcf,adr_phen,output[0])  #GEMMA/pyseer
+        #callString='%s %s --matrix %s --phen %s --out %s' %(config['python2_dir'],config['kover_run'],adr_vcf,adr_phen,output[0])  #KOVER
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        call(callString, shell=True)
+
+

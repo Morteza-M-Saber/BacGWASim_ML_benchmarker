@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May 26 18:34:01 2020
+
+@author: Masih
+?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
+
+
+"""
+
+# Used for system calls.
+from subprocess import call
+
+# Used for timestamping the log files.
+from time import localtime, strftime
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+# SNAKEMAKE RULE #
+import os
+
+
+rule ml_eval:
+    input: 
+        par=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.par",outDir=config["outDir"]),
+        mlOut=expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"])
+    output: 
+        out=expand("{outDir}/{{phenIndex}}/ml_eval",outDir=config["outDir"]),
+        out_auc=expand("{outDir}/{{phenIndex}}/ml_eval.csv",outDir=config["outDir"]),
+        json=expand("{outDir}/{{phenIndex}}/ml_eval.json",outDir=config["outDir"]),
+    params:
+        mlEval=os.path.join('modules','mlEval','mlEval.py'),
+        preRecEval=os.path.join('modules','mlEval','precisionRecallEval.py'),
+        logNAME="Evaluating the performance of ML approach." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
+        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log'),
+    run:
+        with open (input.par[0],'r') as file:
+            adr_=file.readline().strip()
+        #power 
+        callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.mlEval,input.mlOut[0],adr_,output.out[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        call(callString, shell=True)
+
+        #precision-recall score,not for kover
+        callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.preRecEval,input.mlOut[0],adr_,output.out[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        call(callString, shell=True)
