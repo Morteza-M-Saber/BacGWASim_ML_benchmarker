@@ -1,19 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Masih
 
-Run LGBMClassifier feature selection 
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???.
-"""
-
-###@1)importing required libraries and functions
+import pandas as pd
 import os.path
 import sys
 
 sys.path.insert(0, "/project/6006375/masih/projects/python_classes")
-
-# import libraries
-import pandas as pd
 
 
 def get_options():
