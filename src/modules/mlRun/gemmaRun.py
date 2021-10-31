@@ -1,14 +1,3 @@
-# gemmaRun.py
-"""
-
-@author: Masih
-Input: vcf, phen(gcta format)
-output: GWAS analysis using GEMMA with output including 
-normalized_feature_importance(absolute values of beta) 
-pos_normalized_feature_importance(beta values by transforming negative beta values= to 0)
-feature rankings(based on p_lrt values)
-"""
-
 import os
 import pathlib
 from subprocess import call
@@ -43,34 +32,34 @@ def gemma_run(
     plink="/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/plink/1.9b_5.2-x86_64/plink",
 ):
     """
-        
-        Run GEMMA to estimate feature importances corrected for stratification
 
-        Parameters 
-        --------
+    Run GEMMA to estimate feature importances corrected for stratification
 
-        vcf : string
-            .vcf file including the genomic data
+    Parameters
+    --------
 
-        phen: string
-            .phen directory including the phenotype in GCTA format
-            
-        out: string
-            directory where intermediate files and output will be written
-            
-        gemma: string, Default: Gemma from Beluga
-            complete path to gemma tool
-            
-        plink: string, Default: Plink1.9 from Beluga
-            complete path to plink1.9 tool
-        
-        
-        Notes
-        --------
-        
-        - This code is dependent on plink and gemma tools, directory should be provieded above 
+    vcf : string
+        .vcf file including the genomic data
 
-        """
+    phen: string
+        .phen directory including the phenotype in GCTA format
+
+    out: string
+        directory where intermediate files and output will be written
+
+    gemma: string, Default: Gemma from Beluga
+        complete path to gemma tool
+
+    plink: string, Default: Plink1.9 from Beluga
+        complete path to plink1.9 tool
+
+
+    Notes
+    --------
+
+    - This code is dependent on plink and gemma tools, directory should be provieded above
+
+    """
     ###getting the directory to write the intermediate files
     actDir = pathlib.Path().absolute()
     outDir = "/".join(out.split("/")[:-1])
