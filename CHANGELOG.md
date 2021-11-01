@@ -1,4 +1,11 @@
 
+## v1.1.0 2020/10/31
+
+features:
+1. ML classes added
+2. feature selection classes added
+3. plotting classes added
+
 ## v1.0.0 2020/10/30
 
 features:
