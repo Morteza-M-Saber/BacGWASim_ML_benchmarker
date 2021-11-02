@@ -1,4 +1,9 @@
 
+## v1.2.0 2020/11/1
+
+features:
+1. conda environment dependencies added
+
 ## v1.1.0 2020/10/31
 
 features:
