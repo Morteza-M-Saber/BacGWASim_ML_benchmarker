@@ -7,10 +7,16 @@ import yaml
 
 parser = argparse.ArgumentParser(prog="mlBenchmarker", description="Description")
 parser.add_argument(
-    "--snakefile", dest="snakefile", metavar="FILE", help="Path to a snakefile",
+    "--snakefile",
+    dest="snakefile",
+    metavar="FILE",
+    help="Path to a snakefile",
 )
 parser.add_argument(
-    "--config", dest="config", metavar="FILE", help="Path to a config file",
+    "--config",
+    dest="config",
+    metavar="FILE",
+    help="Path to a config file",
 )
 parser.add_argument(
     "--method",
@@ -41,7 +47,10 @@ parser.add_argument(
     help="alpha value for pyseer enet model (lasso:1,enet:0.0069)",
 )
 parser.add_argument(
-    "--outDir", dest="outDir", metavar="DIR", help="Path to the output directory",
+    "--outDir",
+    dest="outDir",
+    metavar="DIR",
+    help="Path to the output directory",
 )
 
 args = parser.parse_args()

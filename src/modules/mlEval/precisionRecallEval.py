@@ -1,14 +1,15 @@
+import argparse
+
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import argparse
-import matplotlib.pyplot as plt
 import seaborn as sns
-import matplotlib
 from numpy import interp
 from sklearn.metrics import auc
 
+
 def get_options():
-    
 
     description = "Evaluating performance of ml approach"
     parser = argparse.ArgumentParser(description=description)
@@ -21,6 +22,7 @@ def get_options():
 
 
 options = get_options()
+
 
 def pre_recall_eval(infile, causalVar, out):
     df = pd.read_csv(infile)
@@ -48,7 +50,6 @@ def pre_recall_eval(infile, causalVar, out):
     interp_ = interp(mean_rec, recall, precision)
     interp_[0] = 1
     # calculating area under curve using sklearn auc function
-    
 
     pre_recal_auc = round(auc(mean_rec, interp_), 3)
     sns.lineplot(

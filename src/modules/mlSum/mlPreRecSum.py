@@ -1,13 +1,13 @@
+import json
 import os.path
 import sys
-import json
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import auc
 import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
+from sklearn.metrics import auc
 
 sys.path.insert(0, "/project/6006375/masih/projects/python_classes")
 
@@ -37,7 +37,10 @@ def cm2inch(*tupl):
     else:
         return tuple(i / inch for i in tupl)
 
+
 matplotlib.use("Agg")
+
+
 def ml_pre_rec_summarize(infile, out):
     csvs = []
     with open(infile) as file:

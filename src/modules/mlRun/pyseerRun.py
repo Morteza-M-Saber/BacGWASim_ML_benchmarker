@@ -140,7 +140,10 @@ def pyseerRun(
     # create the table to be used by mlEval.py
     fit_imp = np.array(df["filter-pvalue"]) / np.array(df["filter-pvalue"]).sum()
     feature_importance = pd.DataFrame(
-        {"feature": df.variant, "normalized_importance": fit_imp,}
+        {
+            "feature": df.variant,
+            "normalized_importance": fit_imp,
+        }
     )
     feature_importance.to_csv(output)
 

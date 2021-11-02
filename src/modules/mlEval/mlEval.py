@@ -1,10 +1,10 @@
+import argparse
 import json
 
 import pandas as pd
-import argparse
+
 
 def get_options():
-    
 
     description = "Evaluating performance of machine learning apporach"
     parser = argparse.ArgumentParser(description=description)
