@@ -1,21 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 18:34:01 2020
-
-@author: Masih
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
-
-
-"""
-
-# Used for system calls.
 from subprocess import call
-
-# Used for timestamping the log files.
 from time import localtime, strftime
-
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-# SNAKEMAKE RULE #
 import os
 
 

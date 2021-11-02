@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 22 18:34:01 2020
+import json
 
-@author: Masih
-"""
-
+import pandas as pd
+import argparse
 
 def get_options():
-    import argparse
+    
 
     description = "Evaluating performance of machine learning apporach"
     parser = argparse.ArgumentParser(description=description)
@@ -20,10 +17,6 @@ def get_options():
 
 
 options = get_options()
-
-import json
-
-import pandas as pd
 
 
 def ml_eval(infile, causalVar, out):

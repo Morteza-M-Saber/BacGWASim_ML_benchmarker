@@ -1,10 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Masih
-"""
-###@1)importing required libraries and functions
 import os.path
 import sys
+import json
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import auc
+import matplotlib
+import numpy as np
+import pandas as pd
 
 sys.path.insert(0, "/project/6006375/masih/projects/python_classes")
 
@@ -34,19 +37,7 @@ def cm2inch(*tupl):
     else:
         return tuple(i / inch for i in tupl)
 
-
-import matplotlib
-import numpy as np
-import pandas as pd
-
 matplotlib.use("Agg")
-import json
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import auc
-
-
 def ml_pre_rec_summarize(infile, out):
     csvs = []
     with open(infile) as file:

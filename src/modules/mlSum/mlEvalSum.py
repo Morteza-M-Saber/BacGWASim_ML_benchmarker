@@ -1,14 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 29 16:00:08 2020
-
-@author: Masih
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
-"""
-
+import json
+import numpy as np
+import pandas as pd
+import argparse
 
 def get_options():
-    import argparse
+    
 
     description = "Summarizaing the performance of ML over all the replicates "
     parser = argparse.ArgumentParser(description=description)
@@ -24,10 +20,6 @@ def get_options():
 
 options = get_options()
 
-import json
-
-import numpy as np
-import pandas as pd
 
 
 def ml_eval_summarize(infile, out):

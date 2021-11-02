@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jun  2 14:51:53 2020
-
-@author: Masih
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
-"""
-
+import numpy as np
+import pandas as pd
+import argparse
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib
+from numpy import interp
+from sklearn.metrics import auc
 
 def get_options():
-    import argparse
+    
 
     description = "Evaluating performance of ml approach"
     parser = argparse.ArgumentParser(description=description)
@@ -21,10 +21,6 @@ def get_options():
 
 
 options = get_options()
-
-import numpy as np
-import pandas as pd
-
 
 def pre_recall_eval(infile, causalVar, out):
     df = pd.read_csv(infile)
@@ -46,20 +42,13 @@ def pre_recall_eval(infile, causalVar, out):
         recall.append(rec_)
 
     # One-dimensional linear interpolation using interp
-    import matplotlib
-
     matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-
     sns.set(style="whitegrid")
-    from numpy import interp
-
     mean_rec = np.linspace(0, 1, 100)
     interp_ = interp(mean_rec, recall, precision)
     interp_[0] = 1
     # calculating area under curve using sklearn auc function
-    from sklearn.metrics import auc
+    
 
     pre_recal_auc = round(auc(mean_rec, interp_), 3)
     sns.lineplot(

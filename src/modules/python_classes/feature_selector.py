@@ -1,5 +1,3 @@
-# numpy and pandas for data manipulation
-# memory management
 import gc
 
 import lightgbm as lgb

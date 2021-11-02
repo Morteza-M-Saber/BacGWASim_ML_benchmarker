@@ -1,16 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 29 15:06:14 2020
 
-@author: Masih
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???.
-"""
-
-# Used for system calls.
 from subprocess import call
 import numpy as np
 import pandas as pd
 import scipy.stats
+from time import localtime, strftime
+
+import os
 
 def mean_confidence_interval(data, confidence=0.95):
     a = 1.0 * np.array(data)
@@ -19,12 +14,7 @@ def mean_confidence_interval(data, confidence=0.95):
     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
     return m, m-h, m+h
 
-# Used for timestamping the log files.
-from time import localtime, strftime
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-# SNAKEMAKE RULE #
-import os
 
 
 rule ml_summarize:
