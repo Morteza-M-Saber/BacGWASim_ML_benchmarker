@@ -1,12 +1,5 @@
-
-"""
-@author: Masih
-snakeFile for running the ml_benchmark_pipeline tools on BacGWASim-generated simulations
-ای که خواهان تولدی دیگری, نخست مرگ را پذیرا باش
-"""
-
-from time import strftime, localtime
-
+from pathlib import Path
+from time import localtime, strftime
 
 rule all:
      input:
@@ -14,11 +7,11 @@ rule all:
 
 
 #step1) convert replication to wildcard
-include: 'modules/simConverter/sim2wildcard.snake', 
+include: Path ('modules' , 'simConverter' , 'sim2wildcard.snake'), 
 #step2) run GWAS tool 
-include: 'modules/mlRun/gwasRun.snake',
+include: Path('modules' , 'mlRun' , 'gwasRun.snake'),
 #step3) evaluate the results
-include: 'modules/mlEval/mlEval.snake',
+include: Path('modules' , 'mlEval' , 'mlEval.snake'),
 #step4) summarize the results
-include: 'modules/mlSum/mlSum.snake', 
+include: Path('modules' , 'mlSum' , 'mlSum.snake'), 
 
