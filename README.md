@@ -12,9 +12,10 @@ cd ML_benchmark_pipeline
 ```
 
 2. Install dependencies:
-   The easiest way to install BacGWASim dependencies is through [`mamba`](https://github.com/mamba-org/mamba) (a modern alternative to `conda`). **It is recommended to install dependencies inside an isolated environment to avoid package conflicts**:
+   The easiest way to install ml_benchmark dependencies is through [`mamba`](https://github.com/mamba-org/mamba) (a modern alternative to `conda`):
 
 ```bash
+conda install mamba=0.17.0 -c conda-forge
 mamba env create --file environment.yml
 ```
 

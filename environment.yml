@@ -18,4 +18,4 @@ dependencies:
   - bcftools=1.14
   - matplotlib=3.4.3
   - yaml=0.2.5
-  - xgboots=1.5.0
+  - xgboost=1.5.0
