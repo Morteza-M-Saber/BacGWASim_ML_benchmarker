@@ -1,26 +1,19 @@
-
-from subprocess import call
-from time import localtime, strftime
 import os
 
-"""
-input:
-Matrix of simulation data in .pickle format
-Phenotypes across replications in .pickle format (one file per line)
-Causal markers across replications in .gcta format (one file per line)
-"""
+from subprocess import call
+
+from time import localtime, strftime
 
 def sim2input(infile):
-        f= open (infile,'r') 
-        samples = [sample for sample in f.read().split('\n') if len(sample) > 0]  # Do not include empty lines
-        return expand("{sample},sample=samples)
-        f.close()
+    with open(infile) as f:
+        samples = [sample for sample in f.read().split('\n') if len(sample) > 0]  # we dont want empty lines
+        return expand("{sample}", sample=samples)
     
 rule sim2wildcard:
     input: 
-        sim = sim2input(config["sim"]),
-        phen = sim2input(config["phen"]),
-        par = sim2input(config["par"]),
+        sim=sim2input(config["sim"]),
+        phen=sim2input(config["phen"]),
+        par=sim2input(config["par"]),
     output: 
         sim=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.txt",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
         phen=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.phen",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
@@ -29,13 +22,13 @@ rule sim2wildcard:
         logNAME="Indexing simulation file address." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
     run:  
         for file_,adr_ in zip(output.sim,input.sim):
-                    with open (file_,'w') as file:
-                        file.write(adr_)
+                 with open (file_,'w') as file:
+                     file.write(adr_)
         for file_,adr_ in zip(output.phen,input.phen):
-                    with open (file_,'w') as file:
-                        file.write(adr_)
+                 with open (file_,'w') as file:
+                     file.write(adr_)
         for file_,adr_ in zip(output.par,input.par):
-                    with open (file_,'w') as file:
-                        file.write(adr_)
+                 with open (file_,'w') as file:
+                     file.write(adr_)
             
                      
