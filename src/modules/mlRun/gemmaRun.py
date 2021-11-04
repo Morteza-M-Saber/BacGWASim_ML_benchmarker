@@ -5,7 +5,7 @@ from subprocess import call
 import numpy as np
 import pandas as pd
 
-
+with open()
 def get_options():
     import argparse
 
@@ -28,8 +28,8 @@ def gemma_run(
     vcf,
     phen,
     out,
-    gemma="/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/gcc7.3/gemma/0.97/bin/gemma",
-    plink="/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/plink/1.9b_5.2-x86_64/plink",
+    gemma="gemma",
+    plink="plink",
 ):
     """
 
@@ -120,3 +120,5 @@ def gemma_run(
 
 
 gemma_run(options.vcf, options.phen, options.out)
+
+open

@@ -46,10 +46,10 @@ def pyseerRun(
     output,
     model,
     alpha,
-    python="~/.local/easybuild/software/2017/Core/miniconda3/4.3.27/envs/MLBenchmarker/bin/python",
-    phenoFormatter="/project/6006375/masih/projects/Papers/7thPaper/analysis/modules/mlRun/phenoFormatter.py",
-    pyseer="~/.local/easybuild/software/2017/Core/miniconda3/4.3.27/envs/MLBenchmarker/bin/pyseer",
-    bcftools="/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/bcftools/1.9/bin/bcftools",
+    python="python",
+    phenoFormatter="phenoFormatter.py",
+    pyseer="pyseer",
+    bcftools="bcftools",
 ):
     outDir = os.path.split(output)[0]
     # change sample names from numbers to strings (recommended by pyseer)
