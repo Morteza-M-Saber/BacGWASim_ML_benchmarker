@@ -1,9 +1,8 @@
-# MLBenchmarker1.0
-"""
 
+"""
 @author: Masih
-snakeFile for running the featureSelection tools on simulations
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???.
+snakeFile for running the ml_benchmark_pipeline tools on BacGWASim-generated simulations
+ای که خواهان تولدی دیگری, نخست مرگ را پذیرا باش
 """
 
 from time import strftime, localtime
@@ -11,21 +10,16 @@ from time import strftime, localtime
 
 rule all:
      input:
-	           #expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.txt",outDir=config["outDir"],phenIndex=range(config['phenRep']))
-             #expand("{outDir}/{phenIndex}/mlOut.csv",outDir=config["outDIR"],phenIndex=range(config['phenRep'])),
-             #expand("{outDir}/{phenIndex}/ml_eval",outDir=config["outDir"],phenIndex=range(config['phenRep']))
-             #expand("{outputDIR}/bagginglgbm/bagging_lgbm_summarize.csv",outputDIR=config["outputDIR"])
-             expand("{outDir}/mlSum.csv",outDir=config["outDir"])
+          expand("{outDir}/mlSum.csv",outDir=config["outDir"])
 
 
 #step1) convert replication to wildcard
-include: 'modules/simConverter/sim2wildcard.snake', #general to all ml modesl
-#include: '/lustre03/project/6006375/masih/projects/Papers/7thPaper/analysis/snakefiles/snake_sim2wildcard_gwas.snake', #specific to gwas
-#step2) run GWAS tool (choose the appropriate program by commenting out the other)
-include: 'modules/mlRun/mlRun.snake', #general to all ml modesl
-#include: 'modules/mlRun/gwasRun.snake', #specific to gwas
+include: 'modules/simConverter/sim2wildcard.snake', 
+#include: 
+#step2) run ML model 
+include: 'modules/mlRun/mlRun.snake',
 #step3) evaluate the results
-include: 'modules/mlEval/mlEval.snake', #general to all ml modesl
+include: 'modules/mlEval/mlEval.snake', 
 #step4) summarize the results
-include: 'modules/mlSum/mlSum.snake', #general to all ml modesl
+include: 'modules/mlSum/mlSum.snake', 
 
