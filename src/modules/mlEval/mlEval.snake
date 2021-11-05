@@ -13,8 +13,8 @@ rule ml_eval:
         out_auc=expand("{outDir}/{{phenIndex}}/ml_eval.csv",outDir=config["outDir"]),
         json=expand("{outDir}/{{phenIndex}}/ml_eval.json",outDir=config["outDir"]),
     params:
-        mlEval=os.path.join('modules','mlEval','mlEval.py'),
-        preRecEval=os.path.join('modules','mlEval','precisionRecallEval.py'),
+        mlEval=Path('src','modules','mlEval','mlEval.py'),
+        preRecEval=Path('src','modules','mlEval','precisionRecallEval.py'),
         logNAME="Evaluating the performance of ML approach." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
         shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
     run:
