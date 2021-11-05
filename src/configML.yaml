@@ -1,7 +1,7 @@
-sim: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/sim.pickle   #vcf/pickle
-phen: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/phen.pickle    #phen/pickle
-par: /project/6006375/masih/projects/Papers/7thPaper/data/BacGWASim1.2/3000_f10k/par.txt
-outDir: res/3000_f10k/3000_f10k
+sim: data/examples/results_BacGWASim_40_quant/sim.txt   #vcf/pickle
+phen: data/examples/results_BacGWASim_40_quant/phen.txt    #phen/pickle
+par: data/examples/results_BacGWASim_40_quant/par.txt
+outDir: data/examples/results_BacGWASim_40_quant/ml_benchmark_res
 phenRep: 10
 method: ml    #'ml/gwas'
 gwasModel: pyseer #pyseer/gemma

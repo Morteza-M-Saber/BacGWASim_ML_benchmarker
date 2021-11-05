@@ -1,0 +1,29 @@
+##fileformat=VCFv4.1
+##FILTER=<ID=PASS,Description="All filters passed">
+##contig=<ID=1,length=20000>
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##bcftools_normVersion=1.10.2+htslib-1.10.2
+##bcftools_normCommand=norm -m -any -Ov -o results_BacGWASim_40_quant/simulations/genSim/sims_norm.vcf results_BacGWASim_40_quant/simulations/genSim/core_rehead.vcf; Date=Fri Nov  5 11:44:39 2021
+##bcftools_annotateVersion=1.10.2+htslib-1.10.2
+##bcftools_annotateCommand=annotate -x ID -I +%CHROM:%POS:%REF:%ALT -Ov -o results_BacGWASim_40_quant/simulations/genSim/sims_no_selection.vcf results_BacGWASim_40_quant/simulations/genSim/sims_norm.vcf; Date=Fri Nov  5 11:44:39 2021
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##bcftools_viewVersion=1.10.2+htslib-1.10.2
+##bcftools_viewCommand=view -q 0.01 -oV -o results_BacGWASim_40_quant/simulations/genSim/sims_raw.vcf results_BacGWASim_40_quant/simulations/genSim/sims_no_selection.vcf; Date=Fri Nov  5 11:44:39 2021
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	zero	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39
+1	1744	1:1744:C:A	C	A	.	.	AC=7;AN=40	GT	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	1	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	1	0	0	0
+1	3546	1:3546:G:T	G	T	.	.	AC=5;AN=40	GT	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0
+1	10432	1:10432:A:T	A	T	.	.	AC=8;AN=40	GT	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	1	0	0	1	1	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0
+1	12767	1:12767:C:A	C	A	.	.	AC=7;AN=40	GT	0	0	0	0	1	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	1	0	0	0	1	0	0	0	0	0
+1	13479	1:13479:A:G	A	G	.	.	AC=5;AN=40	GT	0	1	0	0	0	1	0	0	0	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0
+1	14120	1:14120:A:G	A	G	.	.	AC=16;AN=40	GT	0	1	1	1	0	0	0	1	0	0	1	1	0	0	0	0	1	0	0	1	0	1	0	0	0	0	1	1	0	0	1	1	0	0	1	0	1	0	0	1
+1	14578	1:14578:G:A	G	A	.	.	AC=11;AN=40	GT	0	0	1	0	1	1	1	1	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	1	0	0	1	0	0	0
+1	14694	1:14694:G:C	G	C	.	.	AC=15;AN=40	GT	0	1	0	0	0	0	0	0	1	0	0	1	1	0	1	0	0	0	0	0	1	0	0	0	0	1	0	1	0	1	1	0	1	1	1	1	0	0	0	1
+1	14754	1:14754:T:C	T	C	.	.	AC=15;AN=40	GT	0	0	0	0	0	1	1	1	0	0	0	0	1	1	0	0	0	0	1	0	1	0	1	0	1	1	0	0	0	0	0	0	1	0	0	1	1	1	1	0
+1	16109	1:16109:T:G	T	G	.	.	AC=15;AN=40	GT	0	0	0	0	0	0	0	1	1	0	0	0	1	0	0	1	0	0	0	0	1	0	1	0	0	1	0	1	0	1	1	0	1	0	1	0	1	0	1	1
+1	16527	1:16527:G:A	G	A	.	.	AC=16;AN=40	GT	0	1	0	0	1	1	0	1	0	1	0	1	0	0	1	0	0	1	1	0	0	0	1	1	0	0	0	0	1	0	0	0	1	0	0	1	1	1	0	0
+1	17072	1:17072:A:G	A	G	.	.	AC=5;AN=40	GT	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	1	0	0	0	1
+1	18399	1:18399:T:G	T	G	.	.	AC=11;AN=40	GT	0	0	0	0	0	0	0	0	1	0	0	0	0	1	0	1	0	0	0	0	0	0	1	1	1	0	0	1	0	1	0	0	1	1	0	0	0	0	1	0
+1	18724	1:18724:G:A	G	A	.	.	AC=14;AN=40	GT	0	0	0	1	1	1	1	1	0	0	1	0	0	0	0	1	0	0	1	0	0	1	0	0	0	0	1	0	0	0	1	1	0	0	0	0	1	0	1	0
+1	19219	1:19219:C:G	C	G	.	.	AC=10;AN=40	GT	0	0	0	0	0	0	0	0	0	1	0	0	0	1	1	0	0	1	0	0	0	0	0	0	1	0	0	0	1	1	1	0	1	0	1	0	0	0	0	0
+1	19244	1:19244:A:C	A	C	.	.	AC=11;AN=40	GT	0	0	0	0	0	0	0	0	0	1	0	0	0	1	1	1	0	1	0	0	0	0	0	1	1	0	0	0	1	0	1	0	0	0	1	0	0	0	1	0

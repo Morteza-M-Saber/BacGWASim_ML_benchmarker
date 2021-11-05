@@ -1,19 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???
-Run genotype-phenotype mappers on simulations
 
-"""
-
-# Used for system calls.
 from subprocess import call
 
-# Used for timestamping the log files.
 from time import localtime, strftime
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-# SNAKEMAKE RULE #
 import os
+
 
 
 rule mlRun:

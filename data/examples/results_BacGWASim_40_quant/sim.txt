@@ -1,0 +1,10 @@
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
+data/examples/results_BacGWASim_40_quant/simulations/genSim/sims.pickle
