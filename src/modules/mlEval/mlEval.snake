@@ -21,10 +21,10 @@ rule ml_eval:
         with open (input.par[0],'r') as file:
             adr_=file.readline().strip()
         #power 
-        callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.mlEval,input.mlOut[0],adr_,output.out[0])
-        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        callString='%s %s --infile %s --causalVar %s --out %s' %('python',params.mlEval,input.mlOut[0],adr_,output.out[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
         #precision-recall score,not for kover
-        callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.preRecEval,input.mlOut[0],adr_,output.out[0])
-        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        callString='%s %s --infile %s --causalVar %s --out %s' %('python',params.preRecEval,input.mlOut[0],adr_,output.out[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)

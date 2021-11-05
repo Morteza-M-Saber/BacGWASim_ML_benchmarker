@@ -12,7 +12,7 @@ rule mlRun:
         expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"]),
         expand("{outDir}/{{phenIndex}}/mlOutCV.csv",outDir=config["outDir"]),
     params:
-        mlRun=Path('modules','mlRun','mlRun.py'),
+        mlRun=Path('src','modules','mlRun','mlRun.py'),
         logNAME="Run ML/GWAS tools on simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
         shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
     threads: 16
