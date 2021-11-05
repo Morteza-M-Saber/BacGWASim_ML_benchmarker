@@ -2,7 +2,7 @@ sim: data/examples/results_BacGWASim_40_quant/sim.txt   #vcf/pickle
 phen: data/examples/results_BacGWASim_40_quant/phen.txt    #phen/pickle
 par: data/examples/results_BacGWASim_40_quant/par.txt
 outDir: test_res #data/examples/results_BacGWASim_40_quant/ml_benchmark_res
-phenRep: 10
+phenRep: 3
 method: ml    #'ml/gwas'
 gwasModel: pyseer #pyseer/gemma
 alpha: 1    #1(lasso)/0.0069(enet)
