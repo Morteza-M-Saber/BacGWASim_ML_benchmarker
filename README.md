@@ -34,8 +34,6 @@ vim src/configML.yaml
 5. Execute workflow, determine number of available cpu cores for parallelization
 
 ```
-python main.py --snakefile benchmarkerML --config configML.yaml \
-                      --method ml --mlModel lr \
-                      --outDir output_directory
+python main.py --snakefile src/benchmarkerML --config src/configML.yaml --method ml --mlModel lr --outDir output_directory
 
 ```
