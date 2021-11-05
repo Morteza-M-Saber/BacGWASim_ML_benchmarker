@@ -4,7 +4,7 @@ from subprocess import call
 from time import localtime, strftime
 
 import os
-
+from pathlib import Path
 
 
 rule mlRun:
@@ -15,9 +15,9 @@ rule mlRun:
         expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"]),
         expand("{outDir}/{{phenIndex}}/mlOutCV.csv",outDir=config["outDir"]),
     params:
-        mlRun=os.path.join('modules','mlRun','mlRun.py'),
+        mlRun=Path('modules','mlRun','mlRun.py'),
         logNAME="Run ML/GWAS tools on simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log'),
+        shellCallFile=Path(config["outDir"],'MlBenchmarker.log'),
     threads: 16
     run:
         with open (input.sim[0],'r') as file:
