@@ -1,6 +1,7 @@
 from subprocess import call
 from time import localtime, strftime
 import os
+from pathlib import Path
 
 
 rule ml_eval:
@@ -15,7 +16,7 @@ rule ml_eval:
         mlEval=os.path.join('modules','mlEval','mlEval.py'),
         preRecEval=os.path.join('modules','mlEval','precisionRecallEval.py'),
         logNAME="Evaluating the performance of ML approach." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log'),
+        shellCallFile=Path(config["outDir"],'MlBenchmarker.log'),
     run:
         with open (input.par[0],'r') as file:
             adr_=file.readline().strip()
@@ -23,7 +24,6 @@ rule ml_eval:
         callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.mlEval,input.mlOut[0],adr_,output.out[0])
         call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
         call(callString, shell=True)
-
         #precision-recall score,not for kover
         callString='%s %s --infile %s --causalVar %s --out %s' %(config['python'],params.preRecEval,input.mlOut[0],adr_,output.out[0])
         call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
