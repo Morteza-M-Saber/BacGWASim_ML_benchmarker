@@ -16,7 +16,7 @@ rule ml_eval:
         mlEval=os.path.join('modules','mlEval','mlEval.py'),
         preRecEval=os.path.join('modules','mlEval','precisionRecallEval.py'),
         logNAME="Evaluating the performance of ML approach." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=Path(config["outDir"],'MlBenchmarker.log'),
+        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
     run:
         with open (input.par[0],'r') as file:
             adr_=file.readline().strip()

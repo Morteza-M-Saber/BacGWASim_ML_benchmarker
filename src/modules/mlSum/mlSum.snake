@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats
 from time import localtime, strftime
-
+from pathlib import Path
 import os
 
 def mean_confidence_interval(data, confidence=0.95):
@@ -29,7 +29,7 @@ rule ml_summarize:
         ml_eval_summarize=os.path.join('modules','mlSum','mlEvalSum.py'),
         ml_pre_rec_summarize=os.path.join('modules','mlSum','mlPreRecSum.py'),
         logNAME="Summarizing the performance of ML approach across simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=os.path.join(config["outDir"],'MlBenchmarker.log')
+        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log')
     threads: 1
     run:
         jsonDir='/'.join(output.out_csv[0].split('/')[:-1])+'/jsonFiles.txt'

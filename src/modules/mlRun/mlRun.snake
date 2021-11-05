@@ -1,8 +1,5 @@
-
 from subprocess import call
-
 from time import localtime, strftime
-
 import os
 from pathlib import Path
 
@@ -17,14 +14,14 @@ rule mlRun:
     params:
         mlRun=Path('modules','mlRun','mlRun.py'),
         logNAME="Run ML/GWAS tools on simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=Path(config["outDir"],'MlBenchmarker.log'),
+        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
     threads: 16
     run:
         with open (input.sim[0],'r') as file:
             adr_vcf=file.readline().strip()
         with open (input.phen[0],'r') as file:
             adr_phen=file.readline().strip()
-        callString='%s %s --mlModel %s --infile %s --phen %s --out %s' %(config['python'],params.mlRun,config['mlModel'],adr_vcf,adr_phen,output[0])  
+        callString='%s %s --mlModel %s --infile %s --phen %s --out %s' %('python',params.mlRun,config['mlModel'],adr_vcf,adr_phen,output[0])  
         #callString='%s %s --matrix %s --phen %s --out %s' %(config['python2_dir'],config['kover_run'],adr_vcf,adr_phen,output[0])  #KOVER
-        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
