@@ -2,9 +2,7 @@ import os.path
 import sys
 
 import pandas as pd
-
-sys.path.insert(0, "/project/6006375/masih/projects/python_classes")
-
+from feature_selection import FeatureSelector
 
 def get_options():
     import argparse
@@ -39,7 +37,7 @@ def ml_fitSelect(infile, mlModel, phen, outfile):
     X = df
     Y = phen.phenotype
     ###@4-1) Feature selection using lgbm featureSelector
-    from feature_selector import FeatureSelector
+    
 
     fs = FeatureSelector(data=X, labels=Y)
     if mlModel == "svc":
