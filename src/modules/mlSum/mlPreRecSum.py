@@ -8,8 +8,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.metrics import auc
-
-sys.path.insert(0, "/project/6006375/masih/projects/python_classes")
+from ploter_class import line_ploter
 
 
 def get_options():
@@ -63,7 +62,6 @@ def ml_pre_rec_summarize(infile, out):
     mean_auc_ = auc(mean_rec, mean_pre_)
     std_auc_ = np.std(auc_)
     ##plotting the data
-    from ploter_class import line_ploter
 
     df = pd.DataFrame(
         {
