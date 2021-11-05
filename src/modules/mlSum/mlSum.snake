@@ -26,8 +26,8 @@ rule ml_summarize:
         out_csv=expand("{outDir}/mlSum.csv",outDir=config["outDir"]),
         out_png=expand("{outDir}/mlSum.png",outDir=config["outDir"]),
     params:
-        ml_eval_summarize=os.path.join('modules','mlSum','mlEvalSum.py'),
-        ml_pre_rec_summarize=os.path.join('modules','mlSum','mlPreRecSum.py'),
+        ml_eval_summarize=Path('src','modules','mlSum','mlEvalSum.py'),
+        ml_pre_rec_summarize=Path('src','modules','mlSum','mlPreRecSum.py'),
         logNAME="Summarizing the performance of ML approach across simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
         shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log')
     threads: 1
@@ -37,8 +37,8 @@ rule ml_summarize:
         for jsons in input.json:
             txt.write(jsons+'\n')
         txt.close()
-        callString='%s %s --infile %s --out %s' %(config['python'],params.ml_eval_summarize,jsonDir,output.out_csv[0])
-        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        callString='%s %s --infile %s --out %s' %('python',params.ml_eval_summarize,jsonDir,output.out_csv[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
         #running the precison-recall auc scores
         csvDir='/'.join(output.out_png[0].split('/')[:-1])+'/csvFiles.txt'
@@ -46,8 +46,8 @@ rule ml_summarize:
         for csvs in input.auc:
             txt.write(csvs+'\n')
         txt.close()
-        callString='%s %s --infile %s --out %s' %(config['python'],params.ml_pre_rec_summarize,csvDir,output.out_png[0])
-        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + params.shellCallFile, shell=True)
+        callString='%s %s --infile %s --out %s' %('python',params.ml_pre_rec_summarize,csvDir,output.out_png[0])
+        call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
         #summarize results of cv scores across 10 replicates fo ml models only
         if config['method'] == 'ml':
