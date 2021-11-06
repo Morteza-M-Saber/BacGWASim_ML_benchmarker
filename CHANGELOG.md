@@ -1,4 +1,11 @@
 
+## v1.3.0 2020/11/5
+
+features:
+1. feature_selection and plotting added
+2. example data added
+3. pipeline tested on example data
+
 ## v1.2.0 2020/11/1
 
 features:
