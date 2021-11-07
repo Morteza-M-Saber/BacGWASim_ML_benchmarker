@@ -31,9 +31,16 @@ conda activate ml_benchmark
 vim src/configML.yaml
 ```
 
-5. Execute workflow, determine number of available cpu cores for parallelization
+5. Execute workflow
+
+Example for ML model evaluation:
+```
+python main.py --snakefile src/benchmarkerML --config src/configfile.yaml --causal_variant_file_pathes data/examples/results_BacGWASim_40_quant/par.txt --phenotype_file_pathes data/examples/results_BacGWASim_40_quant/phen_pickle_files.txt  --simulation_file_pathes data/examples/results_BacGWASim_40_quant/sim_pickle_files.txt --method ml --mlModel lr --output output_directory
 
 ```
-python main.py --snakefile src/benchmarkerML --config src/configML.yaml --method ml --mlModel lr --outDir output_directory
+
+Example for GWAS model evaluation:
+```
+ python main.py --snakefile src/benchmarkerGWAS --config src/configfile.yaml --causal_variant_file_pathes data/examples/results_BacGWASim_40_quant/par.txt --phenotype_file_pathes data/examples/results_BacGWASim_40_quant/phen_phen_files.txt  --simulation_file_pathes data/examples/results_BacGWASim_40_quant/sim_vcf_files.txt --method gwas --gwasModel gemma --output output_directory_gemma
 
 ```
