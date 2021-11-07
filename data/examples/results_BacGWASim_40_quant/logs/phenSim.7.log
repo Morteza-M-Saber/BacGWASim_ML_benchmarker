@@ -1,0 +1,39 @@
+*******************************************************************
+* Genome-wide Complex Trait Analysis (GCTA)
+* version 1.93.2 beta Linux
+* (C) 2010-present, Jian Yang, The University of Queensland
+* Please report bugs to Jian Yang <jian.yang.qt@gmail.com>
+*******************************************************************
+Analysis started at 11:45:03 EDT on Fri Nov 05 2021.
+Hostname: gra-login3
+
+Accepted options:
+--bfile results_BacGWASim_40_quant/simulations/genSim/sims
+--simu-causal-loci results_BacGWASim_40_quant/simulations/phenSim/7/causalLoci.snplist
+--simu-hsq 1
+--simu-k 0.5
+--out results_BacGWASim_40_quant/simulations/phenSim/7/phenSim
+--simu-qt
+
+
+Reading PLINK FAM file from [results_BacGWASim_40_quant/simulations/genSim/sims.fam].
+40 individuals to be included from [results_BacGWASim_40_quant/simulations/genSim/sims.fam].
+Reading PLINK BIM file from [results_BacGWASim_40_quant/simulations/genSim/sims.bim].
+4705 SNPs to be included from [results_BacGWASim_40_quant/simulations/genSim/sims.bim].
+Reading PLINK BED file from [results_BacGWASim_40_quant/simulations/genSim/sims.bed] in SNP-major format ...
+Genotype data for 40 individuals and 4705 SNPs to be included from [results_BacGWASim_40_quant/simulations/genSim/sims.bed].
+Simulation parameters:
+Number of simulation replicate(s) = 1 (Default = 1)
+Heritability  = 1 (Default = 0.1)
+
+Reading a list of SNPs (as causal variants) from [results_BacGWASim_40_quant/simulations/phenSim/7/causalLoci.snplist].
+16 SNPs (as causal variants) to be included from [results_BacGWASim_40_quant/simulations/phenSim/7/causalLoci.snplist].
+16 user-specified QTL effects.
+Calculating allele frequencies ...
+Recoding genotypes (individual major mode) ...
+Simulated QTL effect(s) have been saved in [results_BacGWASim_40_quant/simulations/phenSim/7/phenSim.par].
+Simulating GWAS based on the real genotyped data with 1 replicate(s) ...
+Simulated phenotypes of 40 individuals have been saved in [results_BacGWASim_40_quant/simulations/phenSim/7/phenSim.phen].
+
+Analysis finished at 11:45:03 EDT on Fri Nov 05 2021
+Overall computational time: 0.02 sec.

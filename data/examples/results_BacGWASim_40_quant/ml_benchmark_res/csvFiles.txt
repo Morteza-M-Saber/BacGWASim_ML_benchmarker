@@ -1,3 +1,0 @@
-data/examples/results_BacGWASim_40_quant/ml_benchmark_res/0/ml_eval.csv
-data/examples/results_BacGWASim_40_quant/ml_benchmark_res/1/ml_eval.csv
-data/examples/results_BacGWASim_40_quant/ml_benchmark_res/2/ml_eval.csv
