@@ -1,0 +1,10 @@
+simulation_file_pathes: data/examples/results_BacGWASim_40_quant/sim_pickle_files.txt   #vcf/pickle
+phenotype_file_pathes: data/examples/results_BacGWASim_40_quant/phen_pickle_files.txt    #phen/pickle
+causal_variant_file_pathes: data/examples/results_BacGWASim_40_quant/par.txt
+outDir: data/examples/results_BacGWASim_40_quant/ml_benchmark_res
+phenRep: 3
+method: ml    #'ml/gwas'
+gwasModel: pyseer #pyseer/gemma
+alpha: 1    #1(lasso)/0.0069(enet)
+mlModel: lgbm       #lgbm/svc/lr/rf/xgb
+cores: 3

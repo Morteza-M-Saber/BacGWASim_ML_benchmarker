@@ -1,25 +1,5 @@
-# gwasRun.snake (change gwas type in line 40)
-# to use two status of pyseer (enet/lasso) change the default alpha value in pyseerRun.py
-"""
-Created on Fri June 11
-
-@author: Masih
-?? ?? ?????? ????? ?????, ???? ??? ?? ????? ???.
-
-input:
-        simulations.txt, one simulation file per line in .vcf format
-        phen.txt, phenotype of samples in gcta format
-
-"""
-
-# Used for system calls.
 from subprocess import call
-
-# Used for timestamping the log files.
 from time import localtime, strftime
-
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-# SNAKEMAKE RULE #
 import os
 
 

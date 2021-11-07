@@ -11,9 +11,9 @@ def sim2input(infile):
     
 rule sim2wildcard:
     input: 
-        sim=sim2input(config["sim"]),
-        phen=sim2input(config["phen"]),
-        par=sim2input(config["par"]),
+        sim=sim2input(config["simulation_file_pathes"]),
+        phen=sim2input(config["phenotype_file_pathes"]),
+        par=sim2input(config["causal_variant_file_pathes"]),
     output: 
         sim=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.txt",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
         phen=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.phen",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
