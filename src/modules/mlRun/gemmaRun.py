@@ -5,7 +5,7 @@ from subprocess import call
 import numpy as np
 import pandas as pd
 
-with open()
+
 def get_options():
     import argparse
 

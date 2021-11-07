@@ -47,7 +47,7 @@ def pyseerRun(
     model,
     alpha,
     python="python",
-    phenoFormatter="phenoFormatter.py",
+    phenoFormatter=os.path.join('src','modules','mlRun','phenoFormatter.py'),
     pyseer="pyseer",
     bcftools="bcftools",
 ):
@@ -93,6 +93,7 @@ def pyseerRun(
             output + "_wgScreen",
         )
     )
+    print(CallString)
     call(CallString, shell=True)
     ###format the output,1)rank by lowest lrt_pvalue, 2)normalize beta as effect sizes
     df = pd.read_csv(output + "_pyseer", sep="\t")
