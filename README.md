@@ -75,12 +75,16 @@ In case a parameter is specified as both command line argument and within config
 
 ```
 #input data(BacGWASim outputs) including simulated genomes, phenotypes and causal variants
+
 ##txt file including pathes to simulated genomes in .vcf(for GWAS tools)/.pickle(for ML tools) format
 simulation_file_pathes: data/examples/results_BacGWASim_40_quant/sim_pickle_files.txt
+
 ##txt file including pathes to simulated phenotypes in .phen(for GWAS tools)/.pickle(for ML tools) format   
-phenotype_file_pathes: data/examples/results_BacGWASim_40_quant/phen_pickle_files.txt   
+phenotype_file_pathes: data/examples/results_BacGWASim_40_quant/phen_pickle_files.txt
+
 ##txt file including pathes to causal variant data   
-causal_variant_file_pathes: data/examples/results_BacGWASim_40_quant/par.txt 
+causal_variant_file_pathes: data/examples/results_BacGWASim_40_quant/par.txt
+
 phenRep: 3  #Number of replicates 
 method: ml    #'ml/gwas'
 gwasModel: pyseer #pyseer/gemma
@@ -112,3 +116,10 @@ precision_recall_scores.png   # Precision-recall plot in identifying causal vari
 
 
 ```
+
+## Examples
+
+BacGWASim_ML_benchmarker returns the precision-recall curve of the ML models in identifying causal variants averaged over all replicates
+
+1. Precision-recall curves of ML and GWAS models on BacGWASim simulated dataset
+   ![alt text](https://github.com/Morteza-M-Saber/BacGWASim_ML_benchmarker/blob/main/Img/BacGWASim_ML_benchmarker.jpg)
