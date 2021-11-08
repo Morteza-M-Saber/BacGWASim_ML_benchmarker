@@ -53,7 +53,7 @@ def ml_fitSelect(infile, mlModel, phen, outfile):
     df.sort_values(by="normalized_importance", ascending=False, inplace=True)
     # write the features importances in a csv file
     df.to_csv(outfile)
-    eval.to_csv(outfile[:-4] + "CV.csv")
+    eval.to_csv('/'.join(outfile.split('/')[:-1])+'/cross_validation_score.csv')
     return (df, eval)
 
 

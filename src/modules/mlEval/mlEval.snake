@@ -6,17 +6,17 @@ from pathlib import Path
 
 rule ml_eval:
     input: 
-        par=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.par",outDir=config["outDir"]),
-        mlOut=expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"])
+        par=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.par",outDir=config["output"]),
+        mlOut=expand("{outDir}/{{phenIndex}}/feature_importance.csv",outDir=config["output"])
     output: 
-        out=expand("{outDir}/{{phenIndex}}/ml_eval",outDir=config["outDir"]),
-        out_auc=expand("{outDir}/{{phenIndex}}/ml_eval.csv",outDir=config["outDir"]),
-        json=expand("{outDir}/{{phenIndex}}/ml_eval.json",outDir=config["outDir"]),
+        out=expand("{outDir}/{{phenIndex}}/feature_selection.txt",outDir=config["output"]),
+        out_auc=expand("{outDir}/{{phenIndex}}/precision_recall_scores.csv",outDir=config["output"]),
+        json=expand("{outDir}/{{phenIndex}}/feature_selection.json",outDir=config["output"]),
     params:
         mlEval=Path('src','modules','mlEval','mlEval.py'),
         preRecEval=Path('src','modules','mlEval','precisionRecallEval.py'),
         logNAME="Evaluating the performance of ML approach." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
+        shellCallFile=Path(str(config["output"]),'MlBenchmarker.log'),
     run:
         with open (input.par[0],'r') as file:
             adr_=file.readline().strip()
@@ -25,6 +25,6 @@ rule ml_eval:
         call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
         #precision-recall score,not for kover
-        callString='%s %s --infile %s --causalVar %s --out %s' %('python',params.preRecEval,input.mlOut[0],adr_,output.out[0])
+        callString='%s %s --infile %s --causalVar %s --out %s' %('python',params.preRecEval,input.mlOut[0],adr_,output.out_auc[0])
         call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)

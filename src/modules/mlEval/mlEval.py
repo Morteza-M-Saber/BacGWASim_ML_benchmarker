@@ -62,7 +62,7 @@ def ml_eval(infile, causalVar, out):
         )
     txt.close()
     # 5) writing the output as .json file
-    with open(str(out) + ".json", "w") as f:
+    with open(str(out)[:-4] + ".json", "w") as f:
         json.dump(eval_dict, f)
 
 

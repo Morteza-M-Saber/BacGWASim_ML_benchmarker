@@ -63,12 +63,12 @@ def pre_recall_eval(infile, causalVar, out):
     plt.xlabel("Recall")
     plt.ylabel("Precision")
     plt.tight_layout()
-    plt.savefig(out + ".png", dpi=300)
+    plt.savefig(out[:-4] + ".png", dpi=300)
 
     # save the interp_ data so could be used later for plotting the averge
     # score across all simulations
     df = pd.DataFrame({"mean_rec": mean_rec, "precisions": interp_})
-    df.to_csv(out + ".csv")
+    df.to_csv(out[:-4] + ".csv")
 
 
 pre_recall_eval(options.infile, options.causalVar, options.out)

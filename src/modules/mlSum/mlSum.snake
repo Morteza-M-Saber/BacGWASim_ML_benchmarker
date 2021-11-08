@@ -19,17 +19,17 @@ def mean_confidence_interval(data, confidence=0.95):
 
 rule ml_summarize:
     input: 
-        json=expand("{outDir}/{phenIndex}/ml_eval.json",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
-        auc=expand("{outDir}/{phenIndex}/ml_eval.csv",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
-        cv=expand("{outDir}/{phenIndex}/mlOut.csv",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
+        json=expand("{outDir}/{phenIndex}/feature_selection.json",outDir=config["output"],phenIndex=range(config['phenRep'])),
+        auc=expand("{outDir}/{phenIndex}/precision_recall_scores.csv",outDir=config["output"],phenIndex=range(config['phenRep'])),
+        cv=expand("{outDir}/{phenIndex}/cross_validation_score.csv",outDir=config["output"],phenIndex=range(config['phenRep'])),
     output: 
-        out_csv=expand("{outDir}/mlSum.csv",outDir=config["outDir"]),
-        out_png=expand("{outDir}/mlSum.png",outDir=config["outDir"]),
+        out_csv=expand("{outDir}/feature_selection_summary.csv",outDir=config["output"]),
+        out_png=expand("{outDir}/precision_recall_AUC.png",outDir=config["output"]),
     params:
         ml_eval_summarize=Path('src','modules','mlSum','mlEvalSum.py'),
         ml_pre_rec_summarize=Path('src','modules','mlSum','mlPreRecSum.py'),
         logNAME="Summarizing the performance of ML approach across simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log')
+        shellCallFile=Path(str(config["output"]),'MlBenchmarker.log')
     threads: 1
     run:
         jsonDir='/'.join(output.out_csv[0].split('/')[:-1])+'/jsonFiles.txt'
@@ -49,21 +49,21 @@ rule ml_summarize:
         callString='%s %s --infile %s --out %s' %('python',params.ml_pre_rec_summarize,csvDir,output.out_png[0])
         call('echo "' + str(params.logNAME) + ':\n ' + callString + '\n" >> ' + str(params.shellCallFile), shell=True)
         call(callString, shell=True)
-        #summarize results of cv scores across 10 replicates fo ml models only
+        #summarize results of cv scores across replicates (for ML models only)
         if config['method'] == 'ml':
-          metrics_=pd.read_csv(input.cv[0][:-4]+'CV.csv',index_col=0).columns
+          metrics_=pd.read_csv(input.cv[0],index_col=0).columns
           metrics={}
           for met_ in metrics_:
             metrics[met_]=[]
           for rep_ in input.cv:
-            df=pd.read_csv(rep_[:-4]+'CV.csv')
+            df=pd.read_csv(rep_)
             for met_ in metrics:
               metrics[met_].append(df[met_].tolist())
           cvSem={}
           for met_ in metrics:
             cvSem[met_]=mean_confidence_interval([item for sublist in metrics[met_] for item in sublist])
           cvDf=pd.DataFrame(cvSem)
-          cvDf.to_csv(output.out_csv[0][:-4]+'cvSum.csv')
+          cvDf.to_csv('/'.join(output.out_csv[0].split('/')[:-1])+'/cross_validation_score_summary.csv')
 
 
         

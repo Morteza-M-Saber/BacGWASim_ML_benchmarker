@@ -6,15 +6,15 @@ from pathlib import Path
 
 rule mlRun:
     input: 
-        sim=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["outDir"]),
-        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["outDir"]),
+        sim=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["output"]),
+        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["output"]),
     output: 
-        expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"]),
-        expand("{outDir}/{{phenIndex}}/mlOutCV.csv",outDir=config["outDir"]),
+        expand("{outDir}/{{phenIndex}}/feature_importance.csv",outDir=config["output"]),
+        expand("{outDir}/{{phenIndex}}/cross_validation_score.csv",outDir=config["output"]),
     params:
         mlRun=Path('src','modules','mlRun','mlRun.py'),
         logNAME="Run ML/GWAS tools on simulations." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
-        shellCallFile=Path(str(config["outDir"]),'MlBenchmarker.log'),
+        shellCallFile=Path(str(config["output"]),'MlBenchmarker.log'),
     threads: 16
     run:
         with open (input.sim[0],'r') as file:

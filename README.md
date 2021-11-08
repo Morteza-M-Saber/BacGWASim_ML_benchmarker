@@ -3,7 +3,7 @@ The pipeline to evaluate ML and GWAS feature selection tools using BacGWASim sim
 
 ## Requirements
 
-Between parenthesis the versions the script was tested against:
+Required dependencies and the versions the script was tested against:
 
 ```
   - snakemake=6.10.0
@@ -90,4 +90,25 @@ cores: 3    #Number of cpu cores to be used for parallelization
 
 #output data
 outDir: data/examples/results_BacGWASim_40_quant/ml_benchmark_res
+```
+
+## Outputs
+
+Feature_selector_pipeline produces the following outputs:
+
+```
+#summary of benchmark over all replicates
+feature_selection_summary.csv               # Performance of the model in identifying causal varinats categorized based on effect sizes
+cross_validation_score_summary.csv           # Performance of the model in predicting sample labels (only for ML models)
+precision_recall_AUC.png               #precision-recall curve plot of the model in identifying causal variants averaged over replicates
+precision_recall_AUC_pre_rec_summary.json    # Precision-recall curve values in .json format
+
+#benchmark results per each replicate
+feature_selection.txt      # Estimated ranking and feature importances of causal variants categoriezed based on effect size
+feature_importance.csv     # Estimated feature importance and normalized importance for all the variants
+cross_validation_score.csv # Cross-validation scores across folds
+precision_recall_scores.csv   # Precision_recall score in identifying causal variants
+precision_recall_scores.png   # Precision-recall plot in identifying causal variants
+
+
 ```

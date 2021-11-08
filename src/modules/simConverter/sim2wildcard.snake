@@ -15,9 +15,9 @@ rule sim2wildcard:
         phen=sim2input(config["phenotype_file_pathes"]),
         par=sim2input(config["causal_variant_file_pathes"]),
     output: 
-        sim=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.txt",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
-        phen=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.phen",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
-        par=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.par",outDir=config["outDir"],phenIndex=range(config['phenRep'])),
+        sim=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.txt",outDir=config["output"],phenIndex=range(config['phenRep'])),
+        phen=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.phen",outDir=config["output"],phenIndex=range(config['phenRep'])),
+        par=expand("{outDir}/{phenIndex}/sample_adr{phenIndex}.par",outDir=config["output"],phenIndex=range(config['phenRep'])),
     params:
         logNAME="Indexing simulation file address." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
     run:  

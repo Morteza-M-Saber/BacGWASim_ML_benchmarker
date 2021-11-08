@@ -5,10 +5,10 @@ import os
 
 rule GWAS:
     input: 
-        vcf=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["outDir"]),
-        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["outDir"]),
+        vcf=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.txt",outDir=config["output"]),
+        phen=expand("{outDir}/{{phenIndex}}/sample_adr{{phenIndex}}.phen",outDir=config["output"]),
     output: 
-        expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["outDir"])
+        expand("{outDir}/{{phenIndex}}/mlOut.csv",outDir=config["output"])
     params:
         logNAME="Run GWAS command." + strftime("%Y-%m-%d.%H-%M-%S", localtime()),
         pyseerRun=os.path.join('src','modules','mlRun','pyseerRun.py'),

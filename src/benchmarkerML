@@ -3,7 +3,7 @@ from time import localtime, strftime
 
 rule all:
      input:
-          expand("{outDir}/mlSum.csv",outDir=config["outDir"])
+          expand("{outDir}/feature_selection_summary.csv",outDir=config["output"])
 
 #step1) convert replication to wildcard
 include: Path ('modules' , 'simConverter' , 'sim2wildcard.snake'), 
