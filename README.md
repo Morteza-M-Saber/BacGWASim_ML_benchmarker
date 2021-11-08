@@ -1,4 +1,4 @@
-# ML_benchmark_pipeline
+# BacGWASim_ML_benchmarker
 The pipeline to evaluate ML and GWAS feature selection tools using BacGWASim simulated genotype and phenotypes
 
 ## Requirements
@@ -30,7 +30,7 @@ MLbenchmark is build based on Snakemake and can be installed locally as followin
 1.  Clone workflow into working directory
 
 ```
-git clone https://github.com/Morteza-M-Saber/ML_benchmark_pipeline.
+git clone https://github.com/Morteza-M-Saber/BacGWASim_ML_benchmarker.
 cd ML_benchmark_pipeline
 ```
 
@@ -54,7 +54,7 @@ conda activate ml_benchmark
 vim src/configML.yaml
 ```
 
-5. Execute workflow
+5. Execute BacGWASim_ML_benchmarker
 
 Example for ML model evaluation:
 ```
@@ -89,12 +89,12 @@ mlModel: lgbm       #lgbm/svc/lr/rf/xgb
 cores: 3    #Number of cpu cores to be used for parallelization
 
 #output data
-outDir: data/examples/results_BacGWASim_40_quant/ml_benchmark_res
+output: data/examples/results_BacGWASim_40_quant/ml_benchmark_res
 ```
 
 ## Outputs
 
-Feature_selector_pipeline produces the following outputs:
+BacGWASim_ML_benchmarker produces the following outputs:
 
 ```
 #summary of benchmark over all replicates
