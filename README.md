@@ -122,4 +122,4 @@ precision_recall_scores.png   # Precision-recall plot in identifying causal vari
 BacGWASim_ML_benchmarker returns the precision-recall curve of the ML models in identifying causal variants averaged over all replicates
 
 1. Precision-recall curves of ML and GWAS models on BacGWASim simulated dataset
-   ![alt text](https://github.com/Morteza-M-Saber/BacGWASim_ML_benchmarker/tree/main/Img/BacGWASim_ML_benchmarker.jpg)
+   ![alt text](https://github.com/Morteza-M-Saber/BacGWASim_ML_benchmarker/blob/main/img/BacGWASim_ML_benchmarker.jpg)
